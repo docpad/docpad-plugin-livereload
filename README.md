@@ -6,7 +6,7 @@ Automatically refreshes your [DocPad](https://docpad.org) built website whenever
 ## Install
 
 ```
-npm install --save docpad-plugin-live-reload
+npm install --save docpad-plugin-livereload
 ```
 
 
