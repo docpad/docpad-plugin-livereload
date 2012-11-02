@@ -20,11 +20,11 @@
 		"Benjamin Lupton <b@lupton.cc> (http://balupton.com)"
 	],
 	"bugs": {
-		"url": "https://github.com/bevry/docpad-extras/issues"
+		"url": "https://github.com/docpad/docpad-plugin-livereload/issues"
 	},
 	"repository" : {
 		"type": "git",
-		"url": "http://github.com/bevry/docpad-extras.git"
+		"url": "https://github.com/docpad/docpad-plugin-livereload.git"
 	},
 	"engines" : {
 		"node": ">=0.4.0",
