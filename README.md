@@ -5,9 +5,17 @@ Automatically refreshes your [DocPad](https://docpad.org) built website whenever
 
 ## Install
 
-```
-npm install --save docpad-plugin-livereload
-```
+1. Install the Plugin
+
+  ```
+  npm install --save docpad-plugin-livereload
+  ```
+
+1. Ensure your layout outputs the scripts block, using eco it will look something like this:
+
+  ```
+  <%- @getBlock('script').toHTML() %>
+  ```
 
 
 ## Configure
