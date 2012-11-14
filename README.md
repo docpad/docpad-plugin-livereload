@@ -14,7 +14,7 @@ Automatically refreshes your [DocPad](https://docpad.org) built website whenever
 1. Ensure your layout outputs the scripts block, using eco it will look something like this:
 
   ```
-  <%- @getBlock('script').toHTML() %>
+  <%- @getBlock('scripts').toHTML() %>
   ```
 
 
