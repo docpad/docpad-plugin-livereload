@@ -27,14 +27,14 @@
 		"url": "https://github.com/docpad/docpad-plugin-livereload.git"
 	},
 	"engines" : {
-		"node": ">=0.4.0",
-		"docpad": ">=6.3.x <7.0.0"
+		"node": ">=0.4",
+		"docpad": ">=6.3 <7"
 	},
 	"dependencies": {
-		"socket.io": "0.9.x"
+		"engine.io": "~0.3.10"
 	},
 	"devDependencies": {
-		"coffee-script": "1.3.x"
+		"coffee-script": "1.4.x"
 	},
 	"main": "./out/livereload.plugin.js"
 }

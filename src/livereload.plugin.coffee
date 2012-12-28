@@ -22,15 +22,26 @@ module.exports = (BasePlugin) ->
 
 			# Script
 			scriptsBlock.add(
-				[
-					'/socket.io/socket.io.js',
-					"""
-						var socket = io.connect('/docpad-live-reload');
-						socket.on('regenerated',function(){
-							document.location.reload();
-						});
-					"""
-				],
+				"""
+				(function(){
+					// Add the depedency if it doesn't already exist
+					if ( typeof eio === 'undefined' ) {
+				        var t = document.createElement('script');
+				        t.type = 'text/javascript';
+				        t.src = '//raw.github.com/LearnBoost/engine.io-client/master/engine.io.js';
+				        t.onload = function(){
+							// Listen for the regenerated event
+							// and perform a reload of the page when the event occurs
+							var socket = eio('ws://'+window.location.host+'/docpad-live-reload');
+							socket.onmessage = function(){
+								document.location.reload();
+							};
+				        };
+				        var s = document.getElementsByTagName('script')[0];
+				        s.parentNode.insertBefore(t,s);
+					}
+				})();
+				""",
 				{
 					defer: false
 				}
@@ -46,7 +57,12 @@ module.exports = (BasePlugin) ->
 			{server,serverHttp} = opts
 
 			# Initialise Now
-			@socketApp = require('socket.io').listen(serverHttp or server).of('/docpad-live-reload')
+			@sockets = []
+			@socketServer = require('engine.io').attach(serverHttp or server, {path:'/docpad-live-reload'})
+			@socketServer.on 'connection', (socket) =>
+				@sockets.push(socket)
+				socket.on 'close', =>
+					@sockets[@sockets.indexOf(socket)] = null
 
 			# Chain
 			@
@@ -54,9 +70,11 @@ module.exports = (BasePlugin) ->
 		# Generate After
 		generateAfter: (opts) ->
 			# Prepare
+			return @  if @sockets
 
 			# Notify client
-			@socketApp?.emit('regenerated')
+			for socket in @sockets
+				socket?.send('regenerated')
 
 			# Chain
 			@
