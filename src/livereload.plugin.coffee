@@ -9,6 +9,7 @@ module.exports = (BasePlugin) ->
 		# Only enable us on the development environment
 		config:
 			enabled: false
+			inject: true
 			environments:
 				development:
 					enabled: true
@@ -18,19 +19,42 @@ module.exports = (BasePlugin) ->
 		populateCollections: (opts) ->
 			# Prepare
 			docpad = @docpad
+			config = @config
 			scriptsBlock = docpad.getBlock('scripts')
+
+			# Blocks
+			listenBlock = """
+				// Listen for the regenerated event
+				// and perform a reload of the page when the event occurs
+				var socket = io.connect('/docpad-live-reload');
+				socket.on('regenerated',function(){
+					document.location.reload();
+				});
+				"""
+			injectBlock = """
+				// Add the depedency if it doesn't already exist
+				if ( typeof io === 'undefined' ) {
+					var t = document.createElement('script');
+					t.type = 'text/javascript';
+					t.async = true;
+					t.src = '/socket.io/socket.io.js';
+					t.onload = function(){
+
+				#{listenBlock}
+
+					};
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(t,s);
+				}
+				"""
 
 			# Script
 			scriptsBlock.add(
-				[
-					'/socket.io/socket.io.js',
-					"""
-						var socket = io.connect('/docpad-live-reload');
-						socket.on('regenerated',function(){
-							document.location.reload();
-						});
-					"""
-				],
+				"""
+				(function(){
+					#{if config.inject then injectBlock else listenBlock}
+				})();
+				""",
 				{
 					defer: false
 				}
@@ -46,7 +70,7 @@ module.exports = (BasePlugin) ->
 			{server,serverHttp} = opts
 
 			# Initialise Now
-			@socketApp = require('socket.io').listen(serverHttp or server).of('/docpad-live-reload')
+			@socket = require('socket.io').listen(serverHttp or server).of('/docpad-live-reload')
 
 			# Chain
 			@
@@ -56,7 +80,7 @@ module.exports = (BasePlugin) ->
 			# Prepare
 
 			# Notify client
-			@socketApp?.emit('regenerated')
+			@socket?.emit('regenerated')
 
 			# Chain
 			@

@@ -8,7 +8,7 @@ Automatically refreshes your [DocPad](https://docpad.org) built website whenever
 1. Install the Plugin
 
   ```
-  npm install --save docpad-plugin-livereload
+  npm install --save --force docpad-plugin-livereload
   ```
 
 1. Ensure your layout outputs the scripts block, using eco it will look something like this:
@@ -23,6 +23,8 @@ Automatically refreshes your [DocPad](https://docpad.org) built website whenever
 ### Enabled
 By default this plugin is disabled for all environments except the development environment. To enable on more environments set the `enabled` option to `true` inside your environments configuration.
 
+### Inject
+By default we will inject the socket.io dependency if we don't automatically detect it's presence. However, sometimes this auto detection doesn't always work. If this is the case, you can disable the injection and just do the listening by setting the `inject` option to `false`.
 
 ## History
 You can discover the history inside the `History.md` file
