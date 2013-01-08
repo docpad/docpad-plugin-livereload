@@ -70,7 +70,7 @@ module.exports = (BasePlugin) ->
 			{server,serverHttp} = opts
 
 			# Initialise Now
-			@socket = require('socket.io').listen(serverHttp or server).of('/docpad-live-reload')
+			@socket = require('socket.io').listen(serverHttp or server, {'log level': 1}).of('/docpad-live-reload')
 
 			# Chain
 			@
