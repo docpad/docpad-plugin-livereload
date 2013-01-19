@@ -8,7 +8,7 @@
 	- Added the ability to customise the socket options via `socketOptions` config option
 	- Added the ability to customise the channel we listen on via the `channel` config option, also changed the default channel from `/docpad-live-reload` to `/docpad-livereload`
 	- We will now log to the browser if we were reloaded by livereload, this can be turned off via the `browserLog` config option
-	- Added the ability to customise what happens at regeneration via the 'regenerateBlock' config option
+	- Added the ability to customise what happens at regeneration via the `regenerateBlock` config option
 
 - v2.2.0 December 29, 2012
 	- Added a [npm shrinkwrap file](https://npmjs.org/doc/shrinkwrap.html) due to recent dependency issues some people suffered
