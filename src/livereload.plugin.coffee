@@ -8,8 +8,14 @@ module.exports = (BasePlugin) ->
 		# Plugin configuration
 		# Only enable us on the development environment
 		config:
+			channel: '/docpad-livereload'
 			enabled: false
 			inject: true
+			socketOptions: null
+			getSocket: null
+			defaultLogLevel: 1
+			browserLog: true
+			regenerateBlock: null
 			environments:
 				development:
 					enabled: true
@@ -23,42 +29,66 @@ module.exports = (BasePlugin) ->
 			scriptsBlock = docpad.getBlock('scripts')
 
 			# Blocks
+			regenerateBlock = config.regenerateBlock or """
+				if ( log ) {
+					localStorage.setItem('#{config.channel}/reloaded', 'yes');
+				}
+				document.location.reload();
+				"""
 			listenBlock = """
+				// Did we just livereload?
+				var log = #{JSON.stringify config.browserLog} && localStorage && console && console.log && true;
+				if ( log && localStorage.getItem('#{config.channel}/reloaded') === 'yes' ) {
+					localStorage.removeItem('#{config.channel}/reloaded');
+					console.log('LiveReloaded at', new Date())
+				}
+
 				// Listen for the regenerated event
 				// and perform a reload of the page when the event occurs
-				var socket = io.connect('/docpad-live-reload');
-				socket.on('regenerated',function(){
-					document.location.reload();
-				});
+				var listen = function(){
+					var socket = io.connect('#{config.channel}');
+					socket.on('regenerated',function(){
+						#{regenerateBlock}
+					});
+				};
 				"""
 			injectBlock = """
-				// Add the depedency if it doesn't already exist
-				if ( typeof io === 'undefined' ) {
+				// Inject socket.io into our page then listen once loaded
+				var inject = function(){
 					var t = document.createElement('script');
 					t.type = 'text/javascript';
 					t.async = true;
 					t.src = '/socket.io/socket.io.js';
-					t.onload = function(){
-
-				#{listenBlock}
-
-					};
+					t.onload = listen;
 					var s = document.getElementsByTagName('script')[0];
 					s.parentNode.insertBefore(t,s);
-				}
+				};
 				"""
+			scriptBlock =
+				if config.inject
+					"""
+					(function(){
+						#{listenBlock}
+						if ( typeof io !== 'undefined' ) {
+							listen();
+						} else {
+							#{injectBlock}
+							inject();
+						}
+					})();
+					"""
+				else
+					"""
+					(function(){
+						#{listenBlock}
+						if ( typeof io !== 'undefined' ) {
+							listen();
+						}
+					})();
+					"""
 
 			# Script
-			scriptsBlock.add(
-				"""
-				(function(){
-					#{if config.inject then injectBlock else listenBlock}
-				})();
-				""",
-				{
-					defer: false
-				}
-			)
+			scriptsBlock.add(scriptBlock, {defer:false})
 
 			# Chain
 			@
@@ -68,9 +98,24 @@ module.exports = (BasePlugin) ->
 		serverAfter: (opts) ->
 			# Prepare
 			{server,serverHttp} = opts
+			docpad = @docpad
+			config = @config
+			logLevel = if docpad.getLogLevel() is 7 then 3 else config.defaultLogLevel
+			socketOptions = config.socketOptions or {}
+			socketOptions['log level'] ?= logLevel
+			existingSocket = true
 
-			# Initialise Now
-			@socket = require('socket.io').listen(serverHttp or server, {'log level': 1}).of('/docpad-live-reload')
+			# Get socket
+			socket = @config.getSocket?()
+			unless socket
+				existingSocket = false
+				socket = require('socket.io').listen(serverHttp or server, socketOptions)
+
+			# Listen
+			@socket = socket.of(config.channel)
+
+			# Log
+			docpad.log('info', "LiveReload listening to #{if existingSocket then 'existing' else 'new'} socket on channel #{config.channel} with log level #{logLevel}")
 
 			# Chain
 			@

@@ -1,6 +1,6 @@
 {
 	"name": "docpad-plugin-livereload",
-	"version": "2.2.0",
+	"version": "2.3.0",
 	"description": "Automatically refreshes your website whenever a rengeration is performed",
 	"homepage": "http://docpad.org/plugin/livereload",
 	"keywords": [
@@ -19,10 +19,11 @@
 		"Benjamin Lupton <b@lupton.cc> (http://balupton.com)"
 	],
 	"contributors": [
-		"Benjamin Lupton <b@lupton.cc> (http://balupton.com)"
+		"Benjamin Lupton <b@lupton.cc> (http://balupton.com)",
+		"Alex (https://github.com/amesarosh)"
 	],
 	"bugs": {
-		"url": "https://github.com/docpad/docpad-plugin-livereload/issues"
+		"url": "http://docpad.org/plugin/livereload/issues"
 	},
 	"repository" : {
 		"type": "git",
@@ -33,10 +34,10 @@
 		"docpad": ">=6.3 <7"
 	},
 	"dependencies": {
-		"socket.io": "0.9.x"
+		"socket.io": "~0.9.13"
 	},
 	"devDependencies": {
-		"coffee-script": "1.4.x"
+		"coffee-script": "~1.4.0"
 	},
 	"main": "./out/livereload.plugin.js",
 	"scripts": {
