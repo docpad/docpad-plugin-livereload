@@ -1,5 +1,8 @@
 # History
 
+- v2.3.1 March 7, 2013
+	- Repackaged
+
 - v2.3.0 January 19, 2013
 	- Removed shrinkwrap file, hopefully dependency issues have been resolved
 	- Added `getSocket` configuration option so you can now use existing sockets if you wish

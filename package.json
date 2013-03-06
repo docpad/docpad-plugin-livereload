@@ -1,6 +1,6 @@
 {
 	"name": "docpad-plugin-livereload",
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"description": "Automatically refreshes your website whenever a rengeration is performed",
 	"homepage": "http://docpad.org/plugin/livereload",
 	"keywords": [
@@ -16,10 +16,10 @@
 	],
 	"author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
 	"maintainers": [
-		"Benjamin Lupton <b@lupton.cc> (http://balupton.com)"
+		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
 	],
 	"contributors": [
-		"Benjamin Lupton <b@lupton.cc> (http://balupton.com)",
+		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
 		"Alex (https://github.com/amesarosh)"
 	],
 	"bugs": {
@@ -41,6 +41,6 @@
 	},
 	"main": "./out/livereload.plugin.js",
 	"scripts": {
-		"test": "node ./test/livereload.test.js"
+		"test": "node ./out/livereload.test.js"
 	}
 }
