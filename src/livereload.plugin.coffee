@@ -64,6 +64,16 @@ module.exports = (BasePlugin) ->
 					s.parentNode.insertBefore(t,s);
 				};
 				"""
+			# We must make sure the page is ready before injecting our `script` tag,
+			# otherwise the `onload` event will not be registered.
+			injectCall = """		
+				var readyStateCheckInterval = setInterval(function() {
+				  if (document.readyState === "complete") {
+				    inject();
+				    clearInterval(readyStateCheckInterval);
+				  }
+				}, 10);
+				"""
 			scriptBlock =
 				if config.inject
 					"""
@@ -73,7 +83,7 @@ module.exports = (BasePlugin) ->
 							listen();
 						} else {
 							#{injectBlock}
-							inject();
+							#{injectCall}
 						}
 					})();
 					"""
