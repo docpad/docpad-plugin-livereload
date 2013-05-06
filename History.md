@@ -1,5 +1,8 @@
 # History
 
+- v2.4.0 May 6, 2013
+	- Merged [pull request #7](https://github.com/docpad/docpad-plugin-livereload/pull/7) by [Vaughan Rouesnel](https://github.com/vjpr) to solve [issue #3](https://github.com/docpad/docpad-plugin-livereload/issues/3)
+
 - v2.3.1 March 7, 2013
 	- Repackaged
 

@@ -1,6 +1,6 @@
 {
 	"name": "docpad-plugin-livereload",
-	"version": "2.3.1",
+	"version": "2.4.0",
 	"description": "Automatically refreshes your website whenever a rengeration is performed",
 	"homepage": "http://docpad.org/plugin/livereload",
 	"keywords": [

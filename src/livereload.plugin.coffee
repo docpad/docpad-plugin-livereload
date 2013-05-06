@@ -36,15 +36,14 @@ module.exports = (BasePlugin) ->
 				document.location.reload();
 				"""
 			listenBlock = """
-				// Did we just livereload?
+				/* Did we just livereload? */
 				var log = #{JSON.stringify config.browserLog} && localStorage && console && console.log && true;
 				if ( log && localStorage.getItem('#{config.channel}/reloaded') === 'yes' ) {
 					localStorage.removeItem('#{config.channel}/reloaded');
 					console.log('LiveReloaded at', new Date())
 				}
 
-				// Listen for the regenerated event
-				// and perform a reload of the page when the event occurs
+				/* Listen for the regenerated event and perform a reload of the page when the event occurs */
 				var listen = function(){
 					var socket = io.connect('#{config.channel}');
 					socket.on('regenerated',function(){
@@ -53,7 +52,7 @@ module.exports = (BasePlugin) ->
 				};
 				"""
 			injectBlock = """
-				// Inject socket.io into our page then listen once loaded
+				/* Inject socket.io into our page then listen once loaded */
 				var inject = function(){
 					var t = document.createElement('script');
 					t.type = 'text/javascript';
@@ -66,7 +65,7 @@ module.exports = (BasePlugin) ->
 				"""
 			# We must make sure the page is ready before injecting our `script` tag,
 			# otherwise the `onload` event will not be registered.
-			injectCall = """		
+			injectCall = """
 				var readyStateCheckInterval = setInterval(function() {
 				  if (document.readyState === "complete") {
 				    inject();
