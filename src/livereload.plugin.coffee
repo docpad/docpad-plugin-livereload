@@ -11,9 +11,6 @@ module.exports = (BasePlugin) ->
 			channel: '/docpad-livereload'
 			enabled: false
 			inject: true
-			socketOptions: null
-			getSocket: null
-			defaultLogLevel: 1
 			browserLog: true
 			regenerateBlock: null
 			environments:
@@ -103,8 +100,10 @@ module.exports = (BasePlugin) ->
 			@
 
 		# Setup After
-		# Start our socket.io
 		serverAfter: (opts) ->
+			# Check
+			return @  if @socket
+
 			# Prepare
 			{server,serverHttp} = opts
 			docpad = @docpad
@@ -115,13 +114,13 @@ module.exports = (BasePlugin) ->
 			existingSocket = true
 
 			# Get socket
-			socket = @config.getSocket?()
-			unless socket
+			@socket = @config.getSocket?()
+			unless @socket
 				existingSocket = false
-				socket = require('socket.io').listen(serverHttp or server, socketOptions)
-
-			# Listen
-			@socket = socket.of(config.channel)
+				@socket = new WebSocketServer(extendr.extend({
+					httpServer: serverHttp or server
+					autoAcceptConnections: false
+				},socketOptions)
 
 			# Log
 			docpad.log('info', "LiveReload listening to #{if existingSocket then 'existing' else 'new'} socket on channel #{config.channel} with log level #{logLevel}")
