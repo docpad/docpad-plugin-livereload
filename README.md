@@ -16,6 +16,11 @@ Automatically refreshes your [DocPad](https://docpad.org) built website whenever
   ```
   <%- @getBlock('scripts').toHTML() %>
   ```
+  
+  In Jade, prepend the script block to the head tag like this:
+  ```jade
+  head!= getBlock('scripts').toHTML()
+  ```
 
 ## Test
 
