@@ -17,9 +17,9 @@ Automatically refreshes your [DocPad](https://docpad.org) built website whenever
   <%- @getBlock('scripts').toHTML() %>
   ```
   
-  In Jade, prepend the script block to the head tag like this:
+  In Jade, like this:
   ```jade
-  head!= getBlock('scripts').toHTML()
+  != getBlock('scripts').toHTML()
   ```
 
 ## Test
