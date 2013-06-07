@@ -11,16 +11,20 @@ Automatically refreshes your [DocPad](https://docpad.org) built website whenever
   npm install --save --force docpad-plugin-livereload
   ```
 
-1. Ensure your layout outputs the scripts block, using eco it will look something like this:
+1. Ensure your layout outputs the scripts block
 
-  ```
-  <%- @getBlock('scripts').toHTML() %>
-  ```
-  
-  In Jade, like this:
-  ```jade
-  != getBlock('scripts').toHTML()
-  ```
+	1. In eco:
+		
+		```
+		<%- @getBlock('scripts').toHTML() %>
+		```
+	  
+	1. In jade:
+
+		``` jade
+		!= getBlock('scripts').toHTML()
+		```
+
 
 ## Test
 
@@ -51,6 +55,11 @@ By default we use the socket.io log level of `1` (unless docpad is in debug mode
 
 ### `socketOptions`
 Sometimes you may want to customise the options used for the [socket.io configuration](https://github.com/LearnBoost/Socket.IO/wiki/Configuring-Socket.IO). To do this set the `socketOptions` option to whatever you need.
+
+
+## Troubleshooting
+
+- [Watching doesn't work, works only some of the time, or I get `EISDIR` errors](http://docpad.org/docs/troubleshoot#watching-doesn-t-work-works-only-some-of-the-time-or-i-get-eisdir-errors)
 
 
 ## History
