@@ -56,6 +56,10 @@ By default we use the socket.io log level of `1` (unless docpad is in debug mode
 ### `socketOptions`
 Sometimes you may want to customise the options used for the [socket.io configuration](https://github.com/LearnBoost/Socket.IO/wiki/Configuring-Socket.IO). To do this set the `socketOptions` option to whatever you need.
 
+### `populateCollections`
+Just in case you don't want to populate layouts with Javascript set this to
+`false`.
+
 
 ## Troubleshooting
 
