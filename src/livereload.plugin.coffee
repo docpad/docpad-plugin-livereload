@@ -11,6 +11,7 @@ module.exports = (BasePlugin) ->
 			channel: '/docpad-livereload'
 			enabled: false
 			inject: true
+			populateCollections: true
 			socketOptions: null
 			getSocket: null
 			defaultLogLevel: 1
@@ -27,6 +28,9 @@ module.exports = (BasePlugin) ->
 			docpad = @docpad
 			config = @config
 			scriptsBlock = docpad.getBlock('scripts')
+
+			# Do not populate Collections if it's not wanted
+			return @ unless config.populateCollections
 
 			# Blocks
 			regenerateBlock = config.regenerateBlock or """
