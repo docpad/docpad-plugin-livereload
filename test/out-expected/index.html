@@ -5,41 +5,48 @@
 <body>
 	<script >(function(){
 	/* Did we just livereload? */
-var log = true && localStorage && console && console.log && true;
+var log = !!(localStorage && console && console.log && true);
 if ( log && localStorage.getItem('/docpad-livereload/reloaded') === 'yes' ) {
 	localStorage.removeItem('/docpad-livereload/reloaded');
-	console.log('LiveReloaded at', new Date())
+	console.log('LiveReload completed at', new Date())
 }
 
 /* Listen for the regenerated event and perform a reload of the page when the event occurs */
 var listen = function(){
-	var socket = io.connect('/docpad-livereload');
-	socket.on('regenerated',function(){
-		if ( log ) {
-	localStorage.setItem('/docpad-livereload/reloaded', 'yes');
+	var primus = new Primus('/docpad-livereload');
+	primus.on('data', function(data){
+		if ( data && data.message ) {
+			if ( data.message === 'generateBefore' ) {
+				if ( log ) {
+					console.log('LiveReload started at', new Date());
+				}
+				if ( typeof document.getElementsByTagName !== 'undefined' ) {
+	document.getElementsByTagName('html')[0].className += ' wait';
 }
-document.location.reload();
+			}
+			else if ( data.message === 'generateAfter' ) {
+				if ( log ) {
+					localStorage.setItem('/docpad-livereload/reloaded', 'yes');
+				}
+				document.location.reload();
+			}
+		}
 	});
 };
-	if ( typeof io !== 'undefined' ) {
-		listen();
-	} else {
-		/* Inject socket.io into our page then listen once loaded */
+	/* Inject socket into our page */
 var inject = function(){
 	var t = document.createElement('script');
 	t.type = 'text/javascript';
-	t.async = true;
-	t.src = '/socket.io/socket.io.js';
+	t.async = 'async';
+	t.src = '/primus/primus.js';
 	t.onload = listen;
 	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(t,s);
+	s.parentNode.insertBefore(t, s);
 };
-		var readyStateCheckInterval = setInterval(function() {
-  if (document.readyState === "complete") {
-    inject();
-    clearInterval(readyStateCheckInterval);
-  }
-}, 10);
+	if ( typeof Primus !== 'undefined' ) {
+		listen();
+	} else {
+		inject();
 	}
 })();</script>
 </body>

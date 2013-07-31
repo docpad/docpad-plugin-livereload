@@ -1,6 +1,6 @@
 {
 	"name": "docpad-plugin-livereload",
-	"version": "2.4.0",
+	"version": "2.5.0",
 	"description": "Automatically refreshes your website whenever a rengeration is performed",
 	"homepage": "http://docpad.org/plugin/livereload",
 	"keywords": [
@@ -30,14 +30,18 @@
 		"url": "https://github.com/docpad/docpad-plugin-livereload.git"
 	},
 	"engines" : {
-		"node": ">=0.4",
-		"docpad": ">=6.3 <7"
+		"node": ">=0.4"
 	},
 	"dependencies": {
-		"socket.io": "~0.9.13"
+		"primus": "~1.1.2",
+		"ws": "~0.4.27"
+	},
+	"peerDependencies": {
+		"docpad": ">=6.46 <7"
 	},
 	"devDependencies": {
-		"coffee-script": "~1.4.0"
+		"coffee-script": "~1.6.2",
+		"docpad": ">=6.46 <7"
 	},
 	"main": "./out/livereload.plugin.js",
 	"scripts": {

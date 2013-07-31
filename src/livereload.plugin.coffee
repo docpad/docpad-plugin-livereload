@@ -10,79 +10,91 @@ module.exports = (BasePlugin) ->
 		config:
 			channel: '/docpad-livereload'
 			enabled: false
-			inject: true
-			socketOptions: null
 			getSocket: null
-			defaultLogLevel: 1
-			browserLog: true
-			regenerateBlock: null
+			inject: true
+
+			generateBeforeBlock: null
+			generateAfterBlock: null
+			listenBlock: null
+			injectBlock: null
+			scriptBlock: null
+			styleBlock: null
+
+			socketOptions:
+				transformer: 'websockets'
+				parser: 'json'
+
 			environments:
 				development:
 					enabled: true
 
 		# Populate Collections
-		# Used to inject our scripts block with our socket.io regenerate listener
+		# Used to inject our scripts block with our socket generate listener
 		populateCollections: (opts) ->
 			# Prepare
 			docpad = @docpad
-			config = @config
-			scriptsBlock = docpad.getBlock('scripts')
+			config = @getConfig()
 
 			# Blocks
-			regenerateBlock = config.regenerateBlock or """
-				if ( log ) {
-					localStorage.setItem('#{config.channel}/reloaded', 'yes');
+			generateBeforeBlock = config.generateBeforeBlock or """
+				if ( typeof document.getElementsByTagName !== 'undefined' ) {
+					document.getElementsByTagName('html')[0].className += ' wait';
 				}
+				"""
+			generateAfterBlock = config.generateAfterBlock or """
 				document.location.reload();
 				"""
-			listenBlock = """
+			listenBlock = config.listenBlock or """
 				/* Did we just livereload? */
-				var log = #{JSON.stringify config.browserLog} && localStorage && console && console.log && true;
+				var log = !!(localStorage && console && console.log && true);
 				if ( log && localStorage.getItem('#{config.channel}/reloaded') === 'yes' ) {
 					localStorage.removeItem('#{config.channel}/reloaded');
-					console.log('LiveReloaded at', new Date())
+					console.log('LiveReload completed at', new Date())
 				}
 
 				/* Listen for the regenerated event and perform a reload of the page when the event occurs */
 				var listen = function(){
-					var socket = io.connect('#{config.channel}');
-					socket.on('regenerated',function(){
-						#{regenerateBlock}
+					var primus = new Primus('#{config.channel}');
+					primus.on('data', function(data){
+						if ( data && data.message ) {
+							if ( data.message === 'generateBefore' ) {
+								if ( log ) {
+									console.log('LiveReload started at', new Date());
+								}
+								#{generateBeforeBlock}
+							}
+							else if ( data.message === 'generateAfter' ) {
+								if ( log ) {
+									localStorage.setItem('#{config.channel}/reloaded', 'yes');
+								}
+								#{generateAfterBlock}
+							}
+						}
 					});
 				};
 				"""
-			injectBlock = """
-				/* Inject socket.io into our page then listen once loaded */
+			injectBlock = config.injectBlock or """
+				/* Inject socket into our page */
 				var inject = function(){
 					var t = document.createElement('script');
 					t.type = 'text/javascript';
-					t.async = true;
-					t.src = '/socket.io/socket.io.js';
+					t.async = 'async';
+					t.src = '/primus/primus.js';
 					t.onload = listen;
 					var s = document.getElementsByTagName('script')[0];
-					s.parentNode.insertBefore(t,s);
+					s.parentNode.insertBefore(t, s);
 				};
 				"""
-			# We must make sure the page is ready before injecting our `script` tag,
-			# otherwise the `onload` event will not be registered.
-			injectCall = """
-				var readyStateCheckInterval = setInterval(function() {
-				  if (document.readyState === "complete") {
-				    inject();
-				    clearInterval(readyStateCheckInterval);
-				  }
-				}, 10);
-				"""
-			scriptBlock =
+			scriptBlock = config.scriptBlock or
 				if config.inject
 					"""
 					(function(){
 						#{listenBlock}
-						if ( typeof io !== 'undefined' ) {
+						#{injectBlock}
+						if ( typeof Primus !== 'undefined' ) {
 							listen();
 						} else {
-							#{injectBlock}
-							#{injectCall}
+							inject();
 						}
 					})();
 					"""
@@ -90,51 +102,72 @@ module.exports = (BasePlugin) ->
 					"""
 					(function(){
 						#{listenBlock}
-						if ( typeof io !== 'undefined' ) {
+						if ( typeof Primus !== 'undefined' ) {
 							listen();
 						}
 					})();
 					"""
+			styleBlock = config.styleBlock or """
+				html.wait {
+					cursor: wait !important;
+					opacity: 0;
+					transition: opacity 0.5s ease;
+				}
+				"""
 
 			# Script
-			scriptsBlock.add(scriptBlock, {defer:false})
+			docpad.getBlock('scripts').add(scriptBlock, {defer:false})
+
+			# Style
+			docpad.getBlock('styles').add(styleBlock)
 
 			# Chain
 			@
 
 		# Setup After
-		# Start our socket.io
+		# Start our socket
 		serverAfter: (opts) ->
 			# Prepare
 			{server,serverHttp} = opts
+			plugin = @
 			docpad = @docpad
-			config = @config
-			logLevel = if docpad.getLogLevel() is 7 then 3 else config.defaultLogLevel
-			socketOptions = config.socketOptions or {}
-			socketOptions['log level'] ?= logLevel
-			existingSocket = true
+			config = @getConfig()
 
 			# Get socket
-			socket = @config.getSocket?()
-			unless socket
-				existingSocket = false
-				socket = require('socket.io').listen(serverHttp or server, socketOptions)
+			existingSocket = true
+			@socket = config.getSocket?()
+			unless @socket
+				extendr = require('extendr')
+				Primus = require('primus')
 
-			# Listen
-			@socket = socket.of(config.channel)
+				existingSocket = false
+				socketOptions = extendr.deepExtend({
+					pathname: config.channel
+				}, config.socketOptions)
+
+				@socket = new Primus(serverHttp)
+				@socket.on('error', docpad.warn)
 
 			# Log
-			docpad.log('info', "LiveReload listening to #{if existingSocket then 'existing' else 'new'} socket on channel #{config.channel} with log level #{logLevel}")
+			docpad.log('info', "LiveReload listening to #{if existingSocket then 'existing' else 'new'} socket on channel #{config.channel}")
+
+			# Chain
+			@
+
+		# Generate Before
+		generateBefore: (opts) ->
+			# Notify client
+			@socket?.forEach (spark) ->
+				spark.write(message: 'generateBefore')
 
 			# Chain
 			@
 
 		# Generate After
 		generateAfter: (opts) ->
-			# Prepare
-
 			# Notify client
-			@socket?.emit('regenerated')
+			@socket?.forEach (spark) ->
+				spark.write(message: 'generateAfter')
 
 			# Chain
 			@
