@@ -33,6 +33,7 @@
 		"node": ">=0.4"
 	},
 	"dependencies": {
+		"extendr": "~2.1.0",
 		"primus": "~1.1.2",
 		"ws": "~0.4.27"
 	},
