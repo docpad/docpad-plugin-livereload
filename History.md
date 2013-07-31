@@ -1,5 +1,9 @@
 # History
 
+- v2.5.1 July 31, 2013
+	- Added missing extendr dependency
+		- Thanks to [antoinebrault](https://github.com/antoinebrault) for [pull request #14](https://github.com/docpad/docpad-plugin-livereload/pull/14)
+
 - v2.5.0 July 31, 2013
 	- Rewrote to use [primus](https://github.com/3rd-Eden/primus) and [ws](https://github.com/einaros/ws)
 		- Closes [issue #6](https://github.com/docpad/docpad-plugin-livereload/issues/6) and [issue #5](https://github.com/docpad/docpad-plugin-livereload/issues/5) with help from [Sergey Lukin](https://github.com/sergeylukin), [Alvaro Muir](https://github.com/alvaromuir), [mdanetzky](https://github.com/mdanetzky), [Taylor Young](https://github.com/digitaldesigndj), [Pat O'Callaghan](https://github.com/patocallaghan)
