@@ -1,5 +1,8 @@
 # History
 
+- v2.5.2 August 13, 2013
+	- We now destroy the sockets when docpad gets destroyed
+
 - v2.5.1 July 31, 2013
 	- Added missing extendr dependency
 		- Thanks to [antoinebrault](https://github.com/antoinebrault) for [pull request #14](https://github.com/docpad/docpad-plugin-livereload/pull/14)

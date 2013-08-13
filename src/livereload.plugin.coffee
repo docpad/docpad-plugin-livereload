@@ -155,19 +155,29 @@ module.exports = (BasePlugin) ->
 			@
 
 		# Generate Before
-		generateBefore: (opts) ->
+		generateBefore: ->
 			# Notify client
-			@socket?.forEach (spark) ->
-				spark.write(message: 'generateBefore')
+			@socket?.write(message: 'generateBefore')
 
 			# Chain
 			@
 
 		# Generate After
-		generateAfter: (opts) ->
+		generateAfter: ->
 			# Notify client
-			@socket?.forEach (spark) ->
-				spark.write(message: 'generateAfter')
+			@socket?.write(message: 'generateAfter')
 
 			# Chain
 			@
+
+		# DocPad Destroy
+		docpadDestroy: ->
+			# Destroy the sockets
+			@socket?.destroy({
+				close: false  # Close the HTTP server that Primus received
+				end: true  # End all active connections
+			})
+
+			# Chain
+			@
+
