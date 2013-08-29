@@ -1,5 +1,8 @@
 # History
 
+- v2.5.3 August 29, 2013
+	- Updated dependencies
+
 - v2.5.2 August 13, 2013
 	- We now destroy the sockets when docpad gets destroyed
 
