@@ -1,51 +1,50 @@
 {
-	"name": "docpad-plugin-livereload",
-	"version": "2.5.3",
-	"description": "Automatically refreshes your website whenever a rengeration is performed",
-	"homepage": "http://docpad.org/plugin/livereload",
-	"keywords": [
-		"docpad",
-		"docpad-plugin",
-		"auto-update",
-		"live-reload",
-		"autoupdate",
-		"livereload",
-		"reload",
-		"refresh",
-		"sync"
-	],
-	"author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
-	"maintainers": [
-		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
-	],
-	"contributors": [
-		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
-		"Alex (https://github.com/amesarosh)"
-	],
-	"bugs": {
-		"url": "http://docpad.org/plugin/livereload/issues"
-	},
-	"repository" : {
-		"type": "git",
-		"url": "https://github.com/docpad/docpad-plugin-livereload.git"
-	},
-	"engines" : {
-		"node": ">=0.4"
-	},
-	"dependencies": {
-		"extendr": "~2.1.0",
-		"primus": "~1.4.0",
-		"ws": "~0.4.27"
-	},
-	"peerDependencies": {
-		"docpad": ">=6.46 <7"
-	},
-	"devDependencies": {
-		"coffee-script": "~1.6.2",
-		"docpad": ">=6.46 <7"
-	},
-	"main": "./out/livereload.plugin.js",
-	"scripts": {
-		"test": "node ./out/livereload.test.js"
-	}
+  "name": "docpad-plugin-livereload",
+  "version": "2.5.3",
+  "description": "Automatically refreshes your website whenever a rengeration is performed",
+  "homepage": "http://docpad.org/plugin/livereload",
+  "keywords": [
+    "docpad",
+    "docpad-plugin",
+    "auto-update",
+    "live-reload",
+    "autoupdate",
+    "livereload",
+    "reload",
+    "refresh",
+    "sync"
+  ],
+  "author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
+  "maintainers": [
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+  ],
+  "contributors": [
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
+    "Alex (https://github.com/amesarosh)"
+  ],
+  "bugs": {
+    "url": "http://docpad.org/plugin/livereload/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/docpad/docpad-plugin-livereload.git"
+  },
+  "engines": {
+    "node": ">=0.4"
+  },
+  "dependencies": {
+    "extendr": "~2.1.0",
+    "primus": "~1.4.0",
+    "ws": "~0.4.27"
+  },
+  "peerDependencies": {
+    "docpad": ">=6.46 <7"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.2"
+  },
+  "main": "./out/livereload.plugin.js",
+  "scripts": {
+    "test": "node ./out/livereload.test.js"
+  }
 }
