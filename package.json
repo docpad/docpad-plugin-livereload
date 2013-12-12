@@ -1,8 +1,18 @@
 {
   "name": "docpad-plugin-livereload",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "description": "Automatically refreshes your website whenever a rengeration is performed",
   "homepage": "http://docpad.org/plugin/livereload",
+  "license": {
+    "type": "MIT"
+  },
+  "badges": {
+    "travis": true,
+    "npm": true,
+    "gittip": "bevry",
+    "flattr": "344188/balupton-on-Flattr",
+    "paypal": "QB8GQPZAH84N6"
+  },
   "keywords": [
     "docpad",
     "docpad-plugin",
@@ -14,16 +24,21 @@
     "refresh",
     "sync"
   ],
-  "author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
+  "author": "2012+ Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
   "maintainers": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
   ],
   "contributors": [
+    "Alex (https://github.com/amesarosh)",
+    "antoinebrault (https://github.com/antoinebrault)",
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
-    "Alex (https://github.com/amesarosh)"
+    "Delapouite (https://github.com/Delapouite)",
+    "GarthDB (https://github.com/GarthDB)",
+    "scottoreilly (https://github.com/scottoreilly)",
+    "vjpr (https://github.com/vjpr)"
   ],
   "bugs": {
-    "url": "http://docpad.org/plugin/livereload/issues"
+    "url": "http://docpad.org/docpad/docpad-plugin-livereload/issues"
   },
   "repository": {
     "type": "git",
@@ -34,14 +49,16 @@
   },
   "dependencies": {
     "extendr": "~2.1.0",
-    "primus": "~1.4.0",
+    "primus": "~1.5.0",
     "ws": "~0.4.27"
   },
   "peerDependencies": {
     "docpad": ">=6.46 <7"
   },
   "devDependencies": {
-    "coffee-script": "~1.6.2"
+    "docpad": ">=6.46 <7",
+    "coffee-script": "~1.6.2",
+    "projectz": "~0.3.0"
   },
   "main": "./out/livereload.plugin.js",
   "scripts": {
