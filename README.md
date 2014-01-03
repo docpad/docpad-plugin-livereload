@@ -4,7 +4,7 @@
 
 [![Build Status](http://img.shields.io/travis-ci/docpad/docpad-plugin-livereload.png?branch=master)](http://travis-ci.org/docpad/docpad-plugin-livereload "Check this project's build status on TravisCI")
 [![NPM version](http://badge.fury.io/js/docpad-plugin-livereload.png)](https://npmjs.org/package/docpad-plugin-livereload "View this project on NPM")
-[![Gittip donate button](http://img.shields.io/gittip/bevry.png)](https://www.gittip.com/bevry/ "Donate weekly to this project using Gittip")
+[![Gittip donate button](http://img.shields.io/gittip/docpad.png)](https://www.gittip.com/docpad/ "Donate weekly to this project using Gittip")
 [![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
 [![PayPayl donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QB8GQPZAH84N6 "Donate once-off to this project using Paypal")
 
@@ -95,7 +95,7 @@ These amazing people are maintaining this project:
 
 No sponsors yet! Will you be the first?
 
-[![Gittip donate button](http://img.shields.io/gittip/bevry.png)](https://www.gittip.com/bevry/ "Donate weekly to this project using Gittip")
+[![Gittip donate button](http://img.shields.io/gittip/docpad.png)](https://www.gittip.com/docpad/ "Donate weekly to this project using Gittip")
 [![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
 [![PayPayl donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QB8GQPZAH84N6 "Donate once-off to this project using Paypal")
 
@@ -103,13 +103,13 @@ No sponsors yet! Will you be the first?
 
 These amazing people have contributed code to this project:
 
-- Alex (https://github.com/amesarosh) - [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=amesarosh)
-- antoinebrault (https://github.com/antoinebrault) - [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=antoinebrault)
-- Benjamin Lupton <b@lupton.cc> (https://github.com/balupton) - [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=balupton)
-- Delapouite (https://github.com/Delapouite) - [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=Delapouite)
-- GarthDB (https://github.com/GarthDB) - [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=GarthDB)
-- scottoreilly (https://github.com/scottoreilly) - [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=scottoreilly)
-- vjpr (https://github.com/vjpr) - [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=vjpr)
+- [Alex](https://github.com/amesarosh) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=amesarosh)
+- [antoinebrault](https://github.com/antoinebrault) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=antoinebrault)
+- [Benjamin Lupton](https://github.com/balupton) <b@lupton.cc> — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=balupton)
+- [Delapouite](https://github.com/Delapouite) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=Delapouite)
+- [GarthDB](https://github.com/GarthDB) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=GarthDB)
+- [scottoreilly](https://github.com/scottoreilly) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=scottoreilly)
+- [vjpr](https://github.com/vjpr) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=vjpr)
 
 [Become a contributor!](https://github.com/docpad/docpad-plugin-livereload/blob/master/CONTRIBUTING.md#files)
 
