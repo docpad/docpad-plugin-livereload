@@ -1,6 +1,6 @@
 {
   "name": "docpad-plugin-livereload",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "description": "Automatically refreshes your website whenever a rengeration is performed",
   "homepage": "http://docpad.org/plugin/livereload",
   "license": {
@@ -52,8 +52,8 @@
   },
   "dependencies": {
     "extendr": "~2.1.0",
-    "primus": "~1.5.0",
-    "ws": "~0.4.27"
+    "primus": "~1.5.1",
+    "ws": "~0.4.31"
   },
   "peerDependencies": {
     "docpad": ">=6.46 <7"
@@ -61,7 +61,7 @@
   "devDependencies": {
     "docpad": ">=6.46 <7",
     "coffee-script": "~1.6.2",
-    "projectz": "~0.3.5"
+    "projectz": "~0.3.7"
   },
   "main": "./out/livereload.plugin.js",
   "scripts": {
