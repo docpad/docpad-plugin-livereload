@@ -41,7 +41,7 @@
     "vjpr (https://github.com/vjpr)"
   ],
   "bugs": {
-    "url": "http://docpad.org/docpad/docpad-plugin-livereload/issues"
+    "url": "https://github.com/docpad/docpad-plugin-livereload/issues"
   },
   "repository": {
     "type": "git",
@@ -61,7 +61,7 @@
   "devDependencies": {
     "docpad": ">=6.46 <7",
     "coffee-script": "~1.6.2",
-    "projectz": "~0.3.7"
+    "projectz": "~0.3.9"
   },
   "main": "./out/livereload.plugin.js",
   "scripts": {
