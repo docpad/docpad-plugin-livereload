@@ -62,8 +62,8 @@
   },
   "devDependencies": {
     "docpad": ">=6.46 <7",
-    "coffee-script": "~1.8.0",
-    "projectz": "~0.3.17"
+    "coffee-script": "^1.9.0",
+    "projectz": "^0.4.2"
   },
   "main": "./out/livereload.plugin.js",
   "scripts": {
