@@ -39,7 +39,9 @@
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
     "Delapouite (https://github.com/Delapouite)",
     "GarthDB (https://github.com/GarthDB)",
+    "RobLoach (https://github.com/RobLoach)",
     "scottoreilly (https://github.com/scottoreilly)",
+    "StephenBrown2 (https://github.com/StephenBrown2)",
     "vjpr (https://github.com/vjpr)"
   ],
   "bugs": {
@@ -58,7 +60,7 @@
   "dependencies": {
     "extendr": "~2.1.0",
     "primus": "~2.4.12",
-    "ws": "~0.4.31"
+    "ws": "~0.7.1"
   },
   "devDependencies": {
     "docpad": ">=6.46 <7",
@@ -70,6 +72,7 @@
     "test": "node ./out/livereload.test.js"
   },
   "cakeConfiguration": {
-    "COFFEE_SRC_PATH": "src"
+    "COFFEE_SRC_PATH": "src",
+    "BISCOTTO_SRC_PATH": "src"
   }
 }

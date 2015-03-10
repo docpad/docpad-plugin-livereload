@@ -1,5 +1,8 @@
 # History
 
+- v2.6.1 March 10, 2015
+	- Updated dependencies
+
 - v2.6.0 February 9, 2014
 	- Updated dependencies
 
