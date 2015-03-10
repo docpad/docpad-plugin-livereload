@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "extendr": "~2.1.0",
-    "primus": "~2.0.0",
+    "primus": "~2.4.12",
     "ws": "~0.4.31"
   },
   "devDependencies": {
