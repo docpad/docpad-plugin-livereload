@@ -115,7 +115,9 @@ These amazing people have contributed code to this project:
 - [Benjamin Lupton](https://github.com/balupton) <b@lupton.cc> — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=balupton)
 - [Delapouite](https://github.com/Delapouite) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=Delapouite)
 - [GarthDB](https://github.com/GarthDB) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=GarthDB)
+- [RobLoach](https://github.com/RobLoach) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=RobLoach)
 - [scottoreilly](https://github.com/scottoreilly) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=scottoreilly)
+- [StephenBrown2](https://github.com/StephenBrown2) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=StephenBrown2)
 - [vjpr](https://github.com/vjpr) — [view contributions](https://github.com/docpad/docpad-plugin-livereload/commits?author=vjpr)
 
 [Become a contributor!](https://github.com/docpad/docpad-plugin-livereload/blob/master/CONTRIBUTING.md#files)
