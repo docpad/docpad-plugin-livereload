@@ -38,7 +38,7 @@ var inject = function(){
 	var t = document.createElement('script');
 	t.type = 'text/javascript';
 	t.async = 'async';
-	t.src = '/primus/primus.js';
+	t.src = '/docpad-livereload/primus.js';
 	t.onload = listen;
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(t, s);

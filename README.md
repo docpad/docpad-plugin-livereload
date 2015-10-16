@@ -60,6 +60,9 @@ This option when falsey (the default) means we will create our own socket instan
 ### `channel`
 This option specifies the which channel we should listen to, it defaults to `/docpad-livereload`
 
+### `pathname`
+This option specifies the the pathname that primus should use, it defaults to `/docpad-livereload`
+
 ### `socketOptions`
 This option allows you to customise the [primus configuration](https://github.com/primus/primus) that we use if we have to create our own instance.
 
@@ -98,7 +101,7 @@ These options allow you to customise the content of the scripts and styles that 
 
 These amazing people are maintaining this project:
 
-<ul><li><a href="http://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository docpad/docpad-plugin-livereload">view contributions</a></li></ul>
+<ul><li><a href="http://balupton.com">Benjamin Lupton</a></li></ul>
 
 <h3>Sponsors</h3>
 
@@ -116,14 +119,14 @@ No sponsors yet! Will you be the first?
 These amazing people have contributed code to this project:
 
 <ul><li><a href="https://github.com/amesarosh">Alex Mesarosh</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=amesarosh" title="View the GitHub contributions of Alex Mesarosh on repository docpad/docpad-plugin-livereload">view contributions</a></li>
-<li><a href="antoinebrault.ca">Antoine Brault</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=antoinebrault" title="View the GitHub contributions of Antoine Brault on repository docpad/docpad-plugin-livereload">view contributions</a></li>
-<li><a href="http://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository docpad/docpad-plugin-livereload">view contributions</a></li>
-<li><a href="http://delapouite.com">Bruno Heridet</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=Delapouite" title="View the GitHub contributions of Bruno Heridet on repository docpad/docpad-plugin-livereload">view contributions</a></li>
-<li><a href="http://www.garthdb.com">Garth Braithwaite</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=GarthDB" title="View the GitHub contributions of Garth Braithwaite on repository docpad/docpad-plugin-livereload">view contributions</a></li>
-<li><a href="http://robloach.net">Rob Loach</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=RobLoach" title="View the GitHub contributions of Rob Loach on repository docpad/docpad-plugin-livereload">view contributions</a></li>
+<li><a href="antoinebrault.ca">Antoine Brault</a></li>
+<li><a href="http://balupton.com">Benjamin Lupton</a></li>
+<li><a href="http://delapouite.com">Bruno Heridet</a></li>
+<li><a href="http://www.garthdb.com">Garth Braithwaite</a></li>
+<li><a href="http://robloach.net">Rob Loach</a></li>
 <li><a href="https://github.com/scottoreilly">Scott O'Reilly</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=scottoreilly" title="View the GitHub contributions of Scott O'Reilly on repository docpad/docpad-plugin-livereload">view contributions</a></li>
 <li><a href="https://github.com/StephenBrown2">Stephen Brown II</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=StephenBrown2" title="View the GitHub contributions of Stephen Brown II on repository docpad/docpad-plugin-livereload">view contributions</a></li>
-<li><a href="http://vaughan.io">Vaughan Rouesnel</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=vjpr" title="View the GitHub contributions of Vaughan Rouesnel on repository docpad/docpad-plugin-livereload">view contributions</a></li>
+<li><a href="http://vaughan.io">Vaughan Rouesnel</a></li>
 <li><a href="https://github.com/vsopvsop">vsopvsop</a> — <a href="https://github.com/docpad/docpad-plugin-livereload/commits?author=vsopvsop" title="View the GitHub contributions of vsopvsop on repository docpad/docpad-plugin-livereload">view contributions</a></li></ul>
 
 <a href="https://github.com/docpad/docpad-plugin-livereload/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a>

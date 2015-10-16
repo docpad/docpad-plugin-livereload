@@ -9,6 +9,7 @@ module.exports = (BasePlugin) ->
 		# Only enable us on the development environment
 		config:
 			channel: '/docpad-livereload'
+			pathname: '/docpad-livereload'
 			enabled: false
 			getSocket: null
 			inject: true
@@ -79,7 +80,7 @@ module.exports = (BasePlugin) ->
 					var t = document.createElement('script');
 					t.type = 'text/javascript';
 					t.async = 'async';
-					t.src = '/primus/primus.js';
+					t.src = '#{config.pathname}/primus.js';
 					t.onload = listen;
 					var s = document.getElementsByTagName('script')[0];
 					s.parentNode.insertBefore(t, s);
@@ -124,32 +125,33 @@ module.exports = (BasePlugin) ->
 			# Chain
 			@
 
-		# Setup After
+		# Setup Extend
 		# Start our socket
-		serverAfter: (opts) ->
+		serverExtend: (opts) ->
 			# Prepare
-			{server,serverHttp} = opts
+			{serverHttp} = opts
 			plugin = @
 			docpad = @docpad
 			config = @getConfig()
 
-			# Get socket
-			existingSocket = true
-			@socket = config.getSocket?()
-			unless @socket
-				extendr = require('extendr')
+			# Configuration
+			extendr = require('extendr')
+			socketOptions = extendr.deep({}, config.socketOptions, {
+				pathname: config.pathname
+			})
+
+			# Get socket using custom method if set
+			@socket = config.getSocket?(opts, socketOptions)
+			if @socket
+				docpad.log('info', "LiveReload listening to custom socket on channel #{config.channel}")
+			else
+				# Create a socket using primus
 				Primus = require('primus')
-
-				existingSocket = false
-				socketOptions = extendr.deep({
-					pathname: config.channel
-				}, config.socketOptions)
-
 				@socket = new Primus(serverHttp, socketOptions)
 				@socket.on('error', docpad.warn)
 
-			# Log
-			docpad.log('info', "LiveReload listening to #{if existingSocket then 'existing' else 'new'} socket on channel #{config.channel}")
+				# Log
+				docpad.log('info', "LiveReload listening to new socket on channel #{config.channel}")
 
 			# Chain
 			@
