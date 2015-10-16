@@ -1,23 +1,9 @@
 {
   "name": "docpad-plugin-livereload",
-  "version": "2.6.1",
+  "version": "2.7.0",
   "description": "Automatically refreshes your website whenever a rengeration is performed",
   "homepage": "http://docpad.org/plugin/livereload",
-  "license": {
-    "type": "MIT"
-  },
-  "badges": {
-    "travis": true,
-    "npm": true,
-    "npmdownloads": true,
-    "david": true,
-    "daviddev": true,
-    "gratipay": "docpad",
-    "flattr": "344188/balupton-on-Flattr",
-    "paypal": "QB8GQPZAH84N6",
-    "bitcoin": "https://coinbase.com/checkouts/9ef59f5479eec1d97d63382c9ebcb93a",
-    "wishlist": "http://amzn.com/w/2F8TXKSNAFG4V"
-  },
+  "license": "MIT",
   "keywords": [
     "docpad",
     "docpad-plugin",
@@ -29,20 +15,47 @@
     "refresh",
     "sync"
   ],
+  "badges": {
+    "list": [
+      "travisci",
+      "npmversion",
+      "npmdownloads",
+      "daviddm",
+      "daviddmdev",
+      "---",
+      "slackin",
+      "patreon",
+      "gratipay",
+      "flattr",
+      "paypal",
+      "bitcoin",
+      "wishlist"
+    ],
+    "config": {
+      "patreonUsername": "bevry",
+      "gratipayUsername": "bevry",
+      "flattrCode": "344188/balupton-on-Flattr",
+      "paypalButtonID": "QB8GQPZAH84N6",
+      "bitcoinURL": "https://bevry.me/bitcoin",
+      "wishlistURL": "https://bevry.me/wishlist",
+      "slackinURL": "https://slack.bevry.me"
+    }
+  },
   "author": "2012+ Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
   "maintainers": [
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+    "Benjamin Lupton <b@lupton.cc> (http://balupton.com)"
   ],
   "contributors": [
-    "Alex (https://github.com/amesarosh)",
-    "antoinebrault (https://github.com/antoinebrault)",
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
-    "Delapouite (https://github.com/Delapouite)",
-    "GarthDB (https://github.com/GarthDB)",
-    "RobLoach (https://github.com/RobLoach)",
-    "scottoreilly (https://github.com/scottoreilly)",
-    "StephenBrown2 (https://github.com/StephenBrown2)",
-    "vjpr (https://github.com/vjpr)"
+    "Alex Mesarosh <alex.mesarosh@meltmedia.com> (https://github.com/amesarosh)",
+    "Antoine Brault <antoinebrault@gmail.com> (antoinebrault.ca)",
+    "Benjamin Lupton <b@lupton.cc> (http://balupton.com)",
+    "Bruno Heridet (http://delapouite.com)",
+    "Garth Braithwaite <garthdb@gmail.com> (http://www.garthdb.com)",
+    "Rob Loach <robloach@gmail.com> (http://robloach.net)",
+    "Scott O'Reilly (https://github.com/scottoreilly)",
+    "Stephen Brown II <Stephen.Brown2@gmail.com> (https://github.com/StephenBrown2)",
+    "Vaughan Rouesnel (http://vaughan.io)",
+    "vsopvsop (https://github.com/vsopvsop)"
   ],
   "bugs": {
     "url": "https://github.com/docpad/docpad-plugin-livereload/issues"
@@ -58,21 +71,28 @@
     "docpad": ">=6.46 <7"
   },
   "dependencies": {
-    "extendr": "~2.1.0",
-    "primus": "~2.4.12",
-    "ws": "~0.7.1"
+    "extendr": "^3.0.1",
+    "primus": "^4.0.0",
+    "ws": "^0.8.0"
   },
   "devDependencies": {
     "docpad": ">=6.46 <7",
     "coffee-script": "^1.9.1",
-    "projectz": "^0.5.0"
+    "projectz": "^1.0.6"
   },
   "main": "./out/livereload.plugin.js",
   "scripts": {
+    "clean": "node --harmony nakefile.js clean",
+    "setup": "node --harmony nakefile.js setup",
+    "compile": "node --harmony nakefile.js compile",
+    "watch": "node --harmony nakefile.js watch",
+    "verify": "node --harmony nakefile.js verify",
+    "meta": "node --harmony nakefile.js meta",
+    "prepare": "node --harmony nakefile.js prepare",
+    "release": "node --harmony nakefile.js release",
     "test": "node ./out/livereload.test.js"
   },
-  "cakeConfiguration": {
-    "COFFEE_SRC_PATH": "src",
-    "BISCOTTO_SRC_PATH": "src"
+  "nakeConfiguration": {
+    "COFFEE_SRC_PATH": "src"
   }
 }

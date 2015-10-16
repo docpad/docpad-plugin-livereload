@@ -22,7 +22,7 @@ module.exports = (BasePlugin) ->
 
 			socketOptions:
 				transformer: 'websockets'
-				parser: 'json'
+				parser: 'JSON'
 
 			environments:
 				development:
@@ -141,11 +141,11 @@ module.exports = (BasePlugin) ->
 				Primus = require('primus')
 
 				existingSocket = false
-				socketOptions = extendr.deepExtend({
+				socketOptions = extendr.deep({
 					pathname: config.channel
 				}, config.socketOptions)
 
-				@socket = new Primus(serverHttp)
+				@socket = new Primus(serverHttp, socketOptions)
 				@socket.on('error', docpad.warn)
 
 			# Log
@@ -180,4 +180,3 @@ module.exports = (BasePlugin) ->
 
 			# Chain
 			@
-
