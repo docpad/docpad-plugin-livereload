@@ -1,26 +1,26 @@
-# 9 September 2015
-# https://github.com/bevry/base
-
-# Use the latest travis infrastructure
 sudo: false
-
-# We use node
 language: node_js
 node_js:
-  - "0.12"
-  - "4"
+- '0.10'
+- '0.12'
+- '4'
+- '6'
+- '7'
+matrix:
+  fast_finish: true
 cache:
   directories:
-    - node_modules
-
-# Prepare our tests
-# Ensure the project is setup correctly and compiled
-install: "npm run-script setup"
-before_script: "npm run-script compile"
-
-# Run our tests
-script: "npm test"
-
-# Custom notifications
-# travis encrypt --org "$SLACK_SUBDOMAIN:$SLACK_TRAVIS_TOKEN#updates" --add notifications.slack
-# travis encrypt --org "$TRAVIS_NOTIFICATION_EMAIL" --add notifications.email.recipients
+  - "$HOME/.npm"
+  - "$HOME/.yarn-cache"
+install:
+- eval "$(curl -s https://raw.githubusercontent.com/balupton/awesome-travis/master/scripts/node-install.bash)"
+before_script:
+- eval "$(curl -s https://raw.githubusercontent.com/balupton/awesome-travis/master/scripts/node-verify.bash)"
+after_success:
+- eval "$(curl -s https://raw.githubusercontent.com/balupton/awesome-travis/master/scripts/node-publish.bash)"
+notifications:
+  slack:
+    secure: MAkncaGWDn/5MVYNqmPgkKvCOw2rMup9l1nKbvWLXl4T9Bc6FhobGBf5Lmw2AcMFira5j4IaBxhh38EQQcT+/ZLc3suzRCcwTtFDLNiC0MOZNCCqYauPE/pzDNYyHNkkUxso272QmfAJjCgP94TVJTG4Ic2euVDS4CM8i8TYObs=
+  email:
+    recipients:
+      secure: Lxfg9ztU2jV72Yz+1QMxZExDtWbGY7lRO27LE6Gpg6Nma1cqjeGTB5oKIlzecoEMz/xESoOXt3YH3fo2ME2ccJv+WcFNTOmp3sndzqjFwjt91ETFVnCJ10cG4n1KW943IuX1ToDgvQFuDRzjqtt1IovvU0+k3E1/Qqxk22NMYX4=
