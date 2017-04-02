@@ -68,7 +68,7 @@
     "url": "https://github.com/docpad/docpad-plugin-livereload.git"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": ">=4.5.0"
   },
   "editions": [
     {
@@ -93,9 +93,9 @@
   ],
   "main": "es5/livereload.plugin.js",
   "dependencies": {
-    "extendr": "^3.0.1",
-    "primus": "^4.0.0",
-    "ws": "^0.8.0"
+    "extendr": "^3.2.2",
+    "primus": "^7.0.0",
+    "ws": "^2.2.2"
   },
   "devDependencies": {
     "coffee-script": "^1.12.4",
