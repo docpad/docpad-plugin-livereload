@@ -1,5 +1,8 @@
 # History
 
+## v2.8.0 2017 April 2
+- Updated base files
+
 ## v2.7.1 2015 October 16
 - `pathname` configuration now actually does what it was suppose to
 - If a custom 404 middleware was added, should no longer interfere with primus as we now use the correct `serverExtend` event rather than `serverAfter`
