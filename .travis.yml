@@ -1,32 +1,28 @@
+version: ~> 1.0
 sudo: false
 language: node_js
 node_js:
-- '0.8'
-- '0.10'
-- '0.12'
-- '4'
-- '6'
-- '8'
-- '10'
+  - '10'
+  - '12'
+  - '13'
+  - '14'
 matrix:
   fast_finish: true
-  allow_failures:
-  - node_js: '0.8'
-  - node_js: '0.10'
-  - node_js: '0.12'
-cache:
-  directories:
-  - "$HOME/.npm"
-  - "$HOME/.yarn-cache"
+  allow_failures: []
+cache: npm
 install:
-- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/1ec050bc004d0e2161cb5286c247850d24aecc02/scripts/node-install.bash)"
+  - >-
+    eval "$(curl -fsSL
+    https://raw.githubusercontent.com/bevry/awesome-travis/master/scripts/node-install.bash)"
 before_script:
-- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/1ec050bc004d0e2161cb5286c247850d24aecc02/scripts/node-verify.bash)"
+  - >-
+    eval "$(curl -fsSL
+    https://raw.githubusercontent.com/bevry/awesome-travis/master/scripts/node-verify.bash)"
 after_success:
-- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/1ec050bc004d0e2161cb5286c247850d24aecc02/scripts/node-publish.bash)"
+  - >-
+    eval "$(curl -fsSL
+    https://raw.githubusercontent.com/bevry/awesome-travis/master/scripts/node-publish.bash)"
 notifications:
-  slack:
-    secure: Y6la2/qKOTU7Y6vNF6ZpOpE/ZNLORLmrcqdC2F8TriOPZklE7Shf8A/MxEsu8TmJl9HmuIYbqgEPoZZMPjQHymbRo6kXpAf/VCHU0lHhHd6mTFQAf33x2CJHwpGKfqdFLhG+meVZyjC+BZMgjVIOk/HWj1PgnsGXRCFXkfbK/vc=
   email:
-    recipients:
-      secure: epZDNlT8uPoMi7M7ZasSpiGs6Q78dbw+EwmcSbj5w4XbNB/TLER/P80qgCX5h8wQs0Nrdpozm/w+zroZM+YNDYscfcerbZ7AJqSnQlBlpsmanofw+z1lG0UtdNNxO0ZP5utVbjfZNt059g/p8U/rki3MMYNsC/jzejCeSUYB27k=
+    recipients: >-
+      hNpQxbSsZry4T7SaJUI+e5WZIVvIXUo5xv6z9ey9+iZU8seXiW8+x/HeIOGSzSMpH4SNF0/eHjqSj8YIh/rV7liLEPrJGg1/3gQKs0/pJp/Et4Gr3CjgobynF5tTX0mkJa/NfyeKqdS9o5/01O88DD5BVUk9dEQIVIQtthaMPUE=
